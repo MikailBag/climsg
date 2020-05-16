@@ -45,7 +45,9 @@ fn main() {
         todo!()
     } else {
         for job in jobs {
-            execute_job(&job.0, &vis.scoped(&job.1))
+            let vis = vis.scoped("job");
+            show!(&vis, DUMMY, "will execute: {:?}", &job.0,);
+            execute_job(&job.0, &vis.scoped("output"))
         }
     }
 }
